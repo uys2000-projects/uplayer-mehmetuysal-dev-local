@@ -81,7 +81,13 @@ export default {
     },
     async loadPlaylist() {
       const response = await useFetch<UPlayListItem[]>("/api/fileSystem", { method: "post", params: { function: "readFileObject" }, body: { path: "playlist" } })
-      const playlist = response.data.value
+      let playlist = response.data.value
+
+      // ADULT FILTER FOR FAMILY USE
+      if (response.data.value)
+        playlist = await filterBatcher(response.data.value, (item) => !item.group.toUpperCase().includes('ADULT') ? item : undefined)
+      // ADULT FILTER FOR FAMILY USE
+
       if (!playlist) return this.notFound = true;
       this.playlistStore.playlist = playlist;
       this.playlist = this.playlistStore.playlist

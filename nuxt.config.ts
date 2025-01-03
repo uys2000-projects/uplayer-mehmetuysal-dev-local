@@ -4,4 +4,7 @@ export default defineNuxtConfig({
   sourcemap: false,
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
+  experimental: {
+    renderJsonPayloads: false,
+  },
 });

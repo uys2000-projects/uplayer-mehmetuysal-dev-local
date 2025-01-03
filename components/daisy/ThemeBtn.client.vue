@@ -28,6 +28,7 @@
     </template>
   </DaisyDropdown>
 </template>
+
 <script lang="ts">
 export default {
   data() {
